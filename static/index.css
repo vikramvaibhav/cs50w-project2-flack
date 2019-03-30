@@ -1,0 +1,32 @@
+.h100 {
+  height: 100%;
+}
+
+
+.h60{
+	height: 60px;
+}
+
+.scrollspy-example {
+  position: relative;
+  overflow: auto;
+}
+
+.pointer {
+	cursor: pointer;
+}
+.bg{
+	/* The image used */
+  background-image: url(/static/img11.jpg);
+
+  /* Full height */
+  height: 100%;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.text-orange{
+	color: #e15600;
+}

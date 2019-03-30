@@ -1,0 +1,112 @@
+<!doctype html>
+<html class="h100" lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css')}}">
+    
+    <!-- Handlebars -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <!-- Handlebars Template-->
+    <script id="left" type="text/template">
+          {% raw -%}
+          <div class="media">
+            <img src="static/img/face.png" height="60" class="align-self-start mr-3" alt="...">
+            <div class="media-body">
+              <h6 class="mt-0 mb-1"><strong class="text-orange pointer h5">{{ username }}</strong>
+                <small class="text-muted">{{ time }}</small>
+              </h6>
+              <p>{{ text }}</p>
+            </div>
+          </div>
+          {%- endraw %}
+    </script>
+
+    <script id="right" type="text/template">
+            {% raw -%}
+              <div class="media text-right">
+                <div class="media-body">
+                  <h6 class="mt-0 mb-1"><strong class="text-orange h5">{{ username }}</strong>
+                    <small class="text-muted">{{ time }}</small>
+                  </h6>
+                  <p>{{ text }}</p>
+                </div>
+                  <img src="static/img/face.png" height="60" class="align-self-start mr-3" alt="...">
+              </div>
+          {%- endraw %}
+    </script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="{{url_for('static',filename='index.js')}}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <title>Flack</title>
+  </head>
+  <body class="h100 bg">
+<div class="container-fluid h100">
+	<div class="row h100 p-3">
+		<div class="col-md-2">
+			<div class="list-group">
+	            <div class="list-group-item list-group-item-action bg-secondary text-light d-flex w-100 justify-content-between">
+	              <h5 id="username" class="mb-2"></h5>
+	              <small>Online</small>
+	            </div>
+          	</div>
+          	<hr>
+          	<p class="h5 mt-4 text-info">Channels
+          		<i id="plus" class="fas fa-plus-circle text-right text-dark"></i>
+          	</hp>
+          	<ul id="channelList" class="list-group mt-2">
+          		<li class="list-group-item active">#general</li>
+          	</ul>
+          	<hr>
+          	<p class="h5 mt-4 text-info">Direct Message
+          	</p>
+          	<ul id="dm" class="list-group mt-2">
+
+          	</ul>
+		</div>
+		<div class="col-md-10 border-left h100 pb-5 d-flex flex-column justify-content-end">
+			<div id="messages" class="scrollspy-example">
+			</div>
+			<div class="input-group">
+			<input type="file" class="custom-file-input" id="customFile">
+			<input id='messageInput' type='text' class="form-control" required>
+            <div class="input-group-prepend">
+            <button type="submit" class="btn btn-primary mb-2">Send</button>
+            </div>
+            </div>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalCenter">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 id="modal-title" class="modal-title text-secondary"></h5>
+      </div>
+      <div class="modal-body">
+        <input id="modalInput" type="text" class="form-control" id="username">
+      </div>
+      <div class="modal-footer">
+        <button id="modalButton" type="button" class="btn btn-secondary" disabled>Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
